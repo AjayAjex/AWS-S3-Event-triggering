@@ -104,4 +104,4 @@ aws sns subscribe \
 aws sns publish \
   --topic-arn "$topic_arn" \
   --subject "A new object created in s3 bucket" \
-  --message "Hello from Abhishek.Veeramalla YouTube channel, Learn DevOps Zero to Hero for Free"
+
