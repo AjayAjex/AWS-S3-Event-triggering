@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ajay K Properties</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f5f5f3;color:#1a1a1a;min-height:100vh}
+.header{background:#1a1a2e;color:#fff;padding:14px 16px}
+.header-top{display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:17px;font-weight:800}
+.brand-sub{font-size:10px;color:#94a3b8;margin-top:2px}
+.contact-row{display:flex;gap:14px;margin-top:7px;flex-wrap:wrap}
+.contact-chip{font-size:10px;color:#cbd5e1}
+.add-btn{background:#4f8ef7;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer}
+.tab-bar{display:flex;background:#fff;border-bottom:2px solid #e5e5e5;overflow-x:auto}
+.tab{padding:11px 16px;font-size:12px;font-weight:700;color:#94a3b8;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s}
+.tab.active{color:#1a1a2e;border-bottom-color:#4f8ef7}
+.toolbar{padding:10px 12px;display:flex;gap:8px;flex-wrap:wrap;background:#fff;border-bottom:1px solid #eee}
+.search{flex:1;min-width:120px;border:1px solid #d4d4d4;border-radius:8px;padding:8px 11px;font-size:13px;outline:none}
+select.flt{border:1px solid #d4d4d4;border-radius:8px;padding:8px 9px;font-size:11px;background:#fff;cursor:pointer}
+.count{padding:8px 14px 4px;font-size:11px;color:#64748b}
+.card{background:#fff;border-radius:12px;margin:8px 11px;padding:13px;box-shadow:0 1px 4px rgba(0,0,0,.07);cursor:pointer;border-left:4px solid #4f8ef7}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card-name{font-size:14px;font-weight:700}
+.card-loc{font-size:11px;color:#64748b;margin-top:2px}
+.card-price{font-size:14px;font-weight:800;color:#1a1a2e;text-align:right;white-space:nowrap}
+.card-neg{font-size:10px;color:#4f8ef7;text-align:right}
+.pill-row{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+.pill{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600;display:inline-flex;align-items:center;gap:3px}
+.pill-grey{background:#f1f5f9;color:#334155}
+.sdot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.khata-badge{font-size:10px;padding:2px 7px;border-radius:12px;font-weight:700}
+.kA{background:#dcfce7;color:#166534}
+.kE{background:#e0f2fe;color:#0369a1}
+.kB{background:#fee2e2;color:#991b1b}
+.back-btn{background:none;border:none;color:#4f8ef7;font-size:13px;cursor:pointer;padding:13px 14px;display:flex;align-items:center;gap:5px}
+.dcard{margin:0 11px 10px;background:#fff;border-radius:12px;padding:15px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.dtitle{font-size:19px;font-weight:800;margin-bottom:2px}
+.dloc{font-size:12px;color:#64748b;margin-bottom:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-top:10px}
+.dl{font-size:10px;color:#94a3b8;margin-bottom:2px}
+.dv{font-size:13px;font-weight:700}
+.sec-title{font-size:10px;font-weight:800;color:#94a3b8;letter-spacing:1px;margin-bottom:9px}
+.st-row{display:flex;gap:7px;flex-wrap:wrap}
+.st-btn{font-size:11px;padding:6px 11px;border-radius:20px;border:2px solid #e2e8f0;cursor:pointer;font-weight:700;background:#f8fafc;color:#64748b}
+.st-btn.active-st{border-color:var(--dot);background:var(--bg);color:var(--tc)}
+.act-row{display:flex;gap:9px;margin-top:12px}
+.edit-btn{flex:1;background:#1a1a2e;color:#fff;border:none;border-radius:8px;padding:10px;font-size:13px;font-weight:700;cursor:pointer}
+.del-btn{background:#fee2e2;color:#dc2626;border:none;border-radius:8px;padding:10px 13px;font-size:13px;font-weight:700;cursor:pointer}
+.hi-box{background:#f8fafc;border-radius:8px;padding:10px 12px;margin-top:10px;font-size:12px;color:#334155}
+.nt-box{background:#fffbeb;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12px;color:#92400e}
+.fwrap{padding:0 12px 80px}
+.ftitle{font-size:16px;font-weight:800;padding:13px 0 10px}
+.fg{margin-bottom:12px}
+.lbl{font-size:11px;font-weight:700;color:#64748b;margin-bottom:4px;display:block}
+.inp{width:100%;border:1px solid #d4d4d4;border-radius:8px;padding:8px 11px;font-size:13px;outline:none;background:#fff;font-family:inherit}
+textarea.inp{min-height:65px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.save-btn{width:100%;background:#4f8ef7;color:#fff;border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;margin-top:6px}
+.cancel-btn{width:100%;background:#f1f5f9;color:#475569;border:none;border-radius:10px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px}
+.chkrow{display:flex;align-items:center;gap:8px;font-size:13px;margin:4px 0}
+.cust-card{background:#fff;border-radius:12px;margin:8px 11px;padding:13px;box-shadow:0 1px 4px rgba(0,0,0,.07);cursor:pointer;border-left:4px solid #f59e0b}
+.cust-name{font-size:15px;font-weight:800}
+.empty{text-align:center;padding:40px 20px;color:#94a3b8}
+.saved-toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;z-index:9999;pointer-events:none;display:none}
+</style>
+</head>
+<body>
+<div class="saved-toast" id="toast">✓ Saved</div>
+<div id="root"></div>
+
+<script>
+// ── Data ──
+const STATUS = {
+  Available:{bg:"#e8f5e9",tc:"#2e7d32",dot:"#43a047"},
+  "Under Discussion":{bg:"#fff8e1",tc:"#f57f17",dot:"#ffa000"},
+  Sold:{bg:"#fce4ec",tc:"#b71c1c",dot:"#e53935"},
+  "Taken Off":{bg:"#f3e5f5",tc:"#6a1b9a",dot:"#8e24aa"}
+};
+const LEAD_STATUS = {
+  Exploring:{bg:"#f1f5f9",tc:"#475569",dot:"#94a3b8"},
+  "Hot Lead":{bg:"#fef3c7",tc:"#92400e",dot:"#f59e0b"},
+  "Follow Up":{bg:"#e0f2fe",tc:"#0369a1",dot:"#38bdf8"},
+  Closed:{bg:"#dcfce7",tc:"#166534",dot:"#22c55e"},
+  Lost:{bg:"#fee2e2",tc:"#991b1b",dot:"#ef4444"}
+};
+
+const DEFAULT = {
+  apartments:[
+    {id:"a1",name:"Sobha Arena",type:"2 BHK",location:"Kanakapura Road",area:1301,floor:"1/18",facing:"West",parking:"Covered",furnishing:"Semi-Furnished",khata:"A",price:185,negotiable:true,finalPrice:165,status:"Available",highlights:"Wardrobes, modular kitchen",notes:""},
+    {id:"a2",name:"Elegant Embassy",type:"2 BHK",location:"Subramanyapura",area:1489,floor:"2/4",facing:"North",parking:"—",furnishing:"Fully Furnished",khata:"A",price:95,negotiable:true,finalPrice:null,status:"Available",highlights:"Corner flat, 2 balconies, 100% Vaastu",notes:""},
+    {id:"a3",name:"HM World City",type:"2 BHK",location:"JP Nagar",area:1318,floor:"2/14",facing:"East",parking:"Open",furnishing:"Semi-Furnished",khata:"A",price:105,negotiable:true,finalPrice:null,status:"Available",highlights:"Modular kitchen, wardrobes, pooja room",notes:""},
+    {id:"a4",name:"Prestige Lake Ridge",type:"3 BHK",location:"Uttarahalli",area:1345,floor:"15/18",facing:"East",parking:"Covered",furnishing:"Fully Furnished",khata:"A",price:220,negotiable:true,finalPrice:null,status:"Available",highlights:"4 yrs old, immediate possession",notes:""},
+    {id:"a5",name:"Sattva Aqua Vista",type:"3 BHK",location:"Bannerghatta Road",area:1942,floor:"15/19",facing:"East",parking:"Covered",furnishing:"Unfurnished",khata:"A",price:290,negotiable:false,finalPrice:null,status:"Available",highlights:"New handover, 1380 sqft carpet",notes:""},
+    {id:"a6",name:"Mantri Residency",type:"2 BHK",location:"Bangalore",area:1180,floor:"1/4",facing:"South",parking:"Covered",furnishing:"Semi-Furnished",khata:"A",price:135,negotiable:false,finalPrice:null,status:"Available",highlights:"20 yr old resale",notes:""},
+    {id:"a7",name:"Sai Nandana Enclave",type:"2 BHK",location:"Bilekahalli",area:1025,floor:"2/4",facing:"West",parking:"Dedicated",furnishing:"Semi-Furnished",khata:"A",price:82,negotiable:true,finalPrice:null,status:"Available",highlights:"Anugraha Layout",notes:""},
+    {id:"a8",name:"SNN Raj Etternia",type:"3 BHK",location:"Harlur",area:1510,floor:"15/18",facing:"West",parking:"Available",furnishing:"Semi-Furnished",khata:"A",price:275,negotiable:true,finalPrice:null,status:"Available",highlights:"D Block, 3-5 yrs old",notes:""},
+    {id:"a9",name:"Shriram Surabhi",type:"3 BHK Duplex",location:"Mallasandra, Kanakapura Rd",area:1775,floor:"6+7/7",facing:"East",parking:"Available",furnishing:"Semi-Furnished",khata:"A",price:160,negotiable:true,finalPrice:null,status:"Available",highlights:"Duplex unit",notes:""}
+  ],
+  plots:[
+    {id:"p1",name:"Premium East-Facing Plot",location:"Anjanapura 9th Block (BDA Attached)",size:"30 x 40",area:1200,facing:"East",road:"30 Feet Wide Road",khata:"E",dcConversion:true,loanable:true,pricePerSqft:10500,totalPrice:126,negotiable:true,status:"Available",approvals:"BBMP E-Khata, DC Conversion Done",highlights:"100m from BDA 80ft Road · 1km D-Mart · 1km NICE Road Gottigere Toll",notes:"Contact: +91 86600 64914 / +91 63623 46796"}
+  ],
+  buildings:[
+    {id:"b1",name:"Independent Building – South Bangalore",location:"South Bangalore",size:"24 x 40",facing:"East",floors:4,config:"G: 1BHK + Parking | 1F/2F/3F: 2BHK each | 4F: Tank Room",age:"New",borewell:"1280 ft",water:"Cauvery + 12000L Sump",gas:"Gas line available",khata:"A+E",rent:75000,price:2.15,negotiable:true,status:"Available",highlights:"A-Khata + E-Khata done",notes:""}
+  ],
+  customers:[
+    {id:"c1",name:"Swaroop",phone:"8867661909",email:"",profession:"IT / Software",interest:["Plots","Apartments"],budgetPlot:100,budgetBuilding:160,preferredLocations:"Anjanapura & nearby areas",khataPreference:"A-Khata (BDA)",leadStatus:"Exploring",followUpDate:"2025-09-01",notes:"Looking to buy in ~6 months. Max white transaction preferred. Follow up in 2-3 months with suitable options."}
+  ]
+};
+
+function load(key){
+  try{const v=localStorage.getItem('aqp_'+key);return v?JSON.parse(v):null;}catch(e){return null;}
+}
+function save(key,data){
+  try{localStorage.setItem('aqp_'+key,JSON.stringify(data));}catch(e){}
+}
+
+const DB = {
+  apartments: load('apartments') || JSON.parse(JSON.stringify(DEFAULT.apartments)),
+  plots:      load('plots')      || JSON.parse(JSON.stringify(DEFAULT.plots)),
+  buildings:  load('buildings')  || JSON.parse(JSON.stringify(DEFAULT.buildings)),
+  customers:  load('customers')  || JSON.parse(JSON.stringify(DEFAULT.customers))
+};
+
+function saveAll(){
+  save('apartments',DB.apartments);
+  save('plots',DB.plots);
+  save('buildings',DB.buildings);
+  save('customers',DB.customers);
+  const t=document.getElementById('toast');
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',1800);
+}
+
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
+
+// ── App state ──
+let S = {tab:'apartments',view:'list',selected:null,form:{},search:'',fStatus:'All',fKhata:'All'};
+
+// ── Render ──
+function R(){document.getElementById('root').innerHTML=buildApp();}
+
+function buildApp(){
+  const tabs=[{id:'apartments',label:'🏢 Flats'},{id:'plots',label:'🌿 Plots'},{id:'buildings',label:'🏠 Buildings'},{id:'customers',label:'👥 Leads'}];
+  const showAdd = S.view==='list';
+  const hdr=`<div class="header">
+    <div class="header-top">
+      <div><div class="brand">Ajay K Properties</div><div class="brand-sub">South Bangalore Real Estate</div></div>
+      ${showAdd?`<button class="add-btn" onclick="doAdd()">+ Add</button>`:''}
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip">📞 +91 63623 46796</span>
+      <span class="contact-chip">📸 @ajayk.properties</span>
+    </div>
+  </div>`;
+  const tabbar=`<div class="tab-bar">${tabs.map(t=>`<div class="tab${S.tab===t.id&&S.view==='list'?' active':''}" onclick="switchTab('${t.id}')">${t.label}</div>`).join('')}</div>`;
+
+  let body='';
+  if(S.view==='list') body=buildList();
+  else if(S.view==='detail') body=buildDetail();
+  else if(S.view==='add'||S.view==='edit') body=buildForm();
+  else if(S.view==='cdetail') body=buildCDetail();
+  else if(S.view==='cadd'||S.view==='cedit') body=buildCForm();
+
+  return hdr+tabbar+body;
+}
+
+// ── Pill helpers ──
+function sPill(status,map){
+  const c=map[status]||Object.values(map)[0];
+  return `<span class="pill" style="background:${c.bg};color:${c.tc}"><span class="sdot" style="background:${c.dot}"></span>${status}</span>`;
+}
+function kTag(k){
+  if(!k)return'';
+  return k.split('+').map(p=>{const t=p.trim();return`<span class="khata-badge k${t}">${t}-Khata</span>`;}).join(' ');
+}
+
+// ── LIST ──
+function buildList(){
+  if(S.tab==='customers') return buildCList();
+  const items=DB[S.tab];
+  const filtered=items.filter(p=>{
+    const q=S.search.toLowerCase();
+    const ms=!q||JSON.stringify(p).toLowerCase().includes(q);
+    const mst=S.fStatus==='All'||p.status===S.fStatus;
+    const mk=S.fKhata==='All'||(p.khata&&p.khata.includes(S.fKhata));
+    return ms&&mst&&mk;
+  });
+
+  const toolbar=`<div class="toolbar">
+    <input class="search" placeholder="Search…" value="${S.search}" oninput="S.search=this.value;R()"/>
+    <select class="flt" onchange="S.fStatus=this.value;R()">
+      ${['All',...Object.keys(STATUS)].map(s=>`<option${S.fStatus===s?' selected':''}>${s}</option>`).join('')}
+    </select>
+    <select class="flt" onchange="S.fKhata=this.value;R()">
+      ${['All','A','E','B'].map(k=>`<option value="${k}"${S.fKhata===k?' selected':''}>${k==='All'?'All Khata':k+'-Khata'}</option>`).join('')}
+    </select>
+  </div><div class="count">${filtered.length} listing${filtered.length!==1?'s':''}</div>`;
+
+  if(!filtered.length) return toolbar+`<div class="empty"><div style="font-size:32px">🏗️</div><div style="margin-top:8px;font-size:14px">No listings found</div></div>`;
+
+  const cards=filtered.map(p=>{
+    const c=STATUS[p.status]||Object.values(STATUS)[0];
+    let pr='',sub='';
+    if(S.tab==='apartments'){pr=`₹${p.price}L`;if(p.negotiable)sub='Negotiable';}
+    else if(S.tab==='plots'){pr=`₹${p.pricePerSqft}/sqft`;sub=`~₹${p.totalPrice}L`;}
+    else if(S.tab==='buildings'){pr=`₹${p.price}Cr`;if(p.negotiable)sub='Negotiable';}
+
+    let pills='';
+    if(S.tab==='apartments') pills=`<span class="pill pill-grey">${p.type}</span><span class="pill pill-grey">${p.area} sqft</span><span class="pill pill-grey">${p.facing||'—'}</span>${kTag(p.khata)}${sPill(p.status,STATUS)}`;
+    else if(S.tab==='plots') pills=`<span class="pill pill-grey">${p.size}</span><span class="pill pill-grey">${p.area} sqft</span><span class="pill pill-grey">${p.facing||'—'}</span>${kTag(p.khata)}${sPill(p.status,STATUS)}`;
+    else pills=`<span class="pill pill-grey">${p.size}</span><span class="pill pill-grey">Rent ₹${Math.round(p.rent/1000)}K/mo</span><span class="pill pill-grey">${p.facing||'—'}</span>${kTag(p.khata)}${sPill(p.status,STATUS)}`;
+
+    return `<div class="card" style="border-left-color:${c.dot}" onclick="openDetail('${p.id}')">
+      <div class="card-top">
+        <div><div class="card-name">${p.name}</div><div class="card-loc">📍 ${p.location}</div></div>
+        <div><div class="card-price">${pr}</div><div class="card-neg">${sub}</div></div>
+      </div>
+      <div class="pill-row">${pills}</div>
+    </div>`;
+  }).join('');
+
+  return toolbar+cards;
+}
+
+// ── DETAIL ──
+function buildDetail(){
+  const p=S.selected;
+  if(!p)return'';
+  let priceRow='',rows='';
+
+  if(S.tab==='apartments'){
+    priceRow=`<div style="margin-top:6px"><span style="font-size:22px;font-weight:800">₹${p.price}L</span>${p.finalPrice?`<span style="font-size:11px;color:#64748b;margin-left:8px">Floor: ₹${p.finalPrice}L</span>`:''}${p.negotiable?`<span style="font-size:10px;color:#4f8ef7;margin-left:6px">Negotiable</span>`:''}</div>`;
+    rows=gr([['Type',p.type],['Area',p.area+' sqft'],['Floor',p.floor],['Facing',p.facing],['Parking',p.parking],['Furnishing',p.furnishing]]);
+  } else if(S.tab==='plots'){
+    priceRow=`<div style="margin-top:6px"><span style="font-size:22px;font-weight:800">₹${p.pricePerSqft}/sqft</span><span style="font-size:12px;color:#64748b;margin-left:8px">~₹${p.totalPrice}L total</span>${p.negotiable?`<span style="font-size:10px;color:#4f8ef7;margin-left:6px">Negotiable</span>`:''}</div>`;
+    rows=gr([['Size',p.size],['Area',p.area+' sqft'],['Facing',p.facing],['Road',p.road],['DC Conv.',p.dcConversion?'✅ Done':'❌ No'],['Loanable',p.loanable?'✅ Yes':'❌ No'],['Approvals',p.approvals]]);
+  } else if(S.tab==='buildings'){
+    priceRow=`<div style="margin-top:6px"><span style="font-size:22px;font-weight:800">₹${p.price}Cr</span><span style="font-size:12px;color:#64748b;margin-left:8px">Rent ₹${Number(p.rent).toLocaleString()}/mo</span>${p.negotiable?`<span style="font-size:10px;color:#4f8ef7;margin-left:6px">Negotiable</span>`:''}</div>`;
+    rows=gr([['Size',p.size],['Facing',p.facing],['Floors',p.floors],['Config',p.config],['Age',p.age],['Borewell',p.borewell],['Water',p.water],['Gas',p.gas]]);
+  }
+
+  const stBtns=Object.entries(STATUS).map(([st,c])=>{
+    const active=p.status===st;
+    return `<button class="st-btn${active?' active-st':''}" style="${active?`--bg:${c.bg};--tc:${c.tc};--dot:${c.dot};background:${c.bg};color:${c.tc};border-color:${c.dot}`:''}" onclick="changeStatus('${p.id}','${st}')">${st}</button>`;
+  }).join('');
+
+  return `<button class="back-btn" onclick="S.view='list';R()">← Back</button>
+  <div class="dcard">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div class="dtitle">${p.name}</div><div class="dloc">📍 ${p.location}</div></div>
+      ${sPill(p.status,STATUS)}
+    </div>
+    ${priceRow}
+    <div class="grid2">${rows}</div>
+    ${kTag(p.khata)?`<div style="margin-top:10px">${kTag(p.khata)}</div>`:''}
+    ${p.highlights?`<div class="hi-box"><strong style="font-size:10px;color:#94a3b8">HIGHLIGHTS</strong><br>${p.highlights}</div>`:''}
+    ${p.notes?`<div class="nt-box"><strong style="font-size:10px;color:#94a3b8">NOTES</strong><br>${p.notes}</div>`:''}
+  </div>
+  <div class="dcard">
+    <div class="sec-title">UPDATE STATUS</div>
+    <div class="st-row">${stBtns}</div>
+    <div class="act-row">
+      <button class="edit-btn" onclick="openEdit('${p.id}')">✏️ Edit Listing</button>
+      <button class="del-btn" onclick="doDelete('${p.id}')">🗑</button>
+    </div>
+  </div>`;
+}
+function gr(pairs){return pairs.map(([l,v])=>`<div><div class="dl">${l}</div><div class="dv">${v||'—'}</div></div>`).join('');}
+
+// ── FORM ──
+function buildForm(){
+  const f=S.form;
+  const isEdit=S.view==='edit';
+  let fields='';
+
+  if(S.tab==='apartments'){
+    fields=fi('Project / Apt Name *','name','text',f.name)+
+    fi('Location / Locality *','location','text',f.location)+
+    `<div class="row2">${fs('Type','type',f.type,['1 BHK','2 BHK','3 BHK','3 BHK Duplex','4 BHK'])}${fs('Khata','khata',f.khata,['A','B','E'])}</div>`+
+    `<div class="row2">${fi('Area (sqft)','area','number',f.area)}${fi('Floor (e.g. 5/18)','floor','text',f.floor)}</div>`+
+    `<div class="row2">${fi('Facing','facing','text',f.facing)}${fi('Parking','parking','text',f.parking)}</div>`+
+    fs('Furnishing','furnishing',f.furnishing,['Unfurnished','Semi-Furnished','Fully Furnished'])+
+    `<div class="row2">${fi('Asking Price (L) *','price','number',f.price)}${fi('Floor/Final Price (L)','finalPrice','number',f.finalPrice||'')}</div>`+
+    fc('negotiable',f.negotiable,'Negotiable')+
+    fs('Status','status',f.status,Object.keys(STATUS))+
+    fi('Highlights','highlights','text',f.highlights)+
+    ft('Private Notes','notes',f.notes);
+  } else if(S.tab==='plots'){
+    fields=fi('Plot Name / Label *','name','text',f.name)+
+    fi('Location *','location','text',f.location)+
+    `<div class="row2">${fs('Khata','khata',f.khata,['A','E','B'])}${fi('Size (e.g. 30x40)','size','text',f.size)}</div>`+
+    `<div class="row2">${fi('Area (sqft)','area','number',f.area)}${fi('Facing','facing','text',f.facing)}</div>`+
+    fi('Road Width','road','text',f.road)+
+    fi('Approvals','approvals','text',f.approvals)+
+    `<div class="row2">${fi('Price/sqft (₹)','pricePerSqft','number',f.pricePerSqft)}${fi('Total Price (L)','totalPrice','number',f.totalPrice)}</div>`+
+    `<div class="fg"><div style="display:flex;gap:16px">`+
+    `<label class="chkrow"><input type="checkbox" id="f_dcConversion"${f.dcConversion?' checked':''} onchange="F('dcConversion',this.checked)"> DC Conversion</label>`+
+    `<label class="chkrow"><input type="checkbox" id="f_loanable"${f.loanable?' checked':''} onchange="F('loanable',this.checked)"> Loanable Docs</label>`+
+    `</div></div>`+
+    fc('negotiable',f.negotiable,'Negotiable')+
+    fs('Status','status',f.status,Object.keys(STATUS))+
+    fi('Highlights','highlights','text',f.highlights)+
+    ft('Private Notes','notes',f.notes);
+  } else if(S.tab==='buildings'){
+    fields=fi('Building Name *','name','text',f.name)+
+    fi('Location *','location','text',f.location)+
+    `<div class="row2">${fs('Khata','khata',f.khata,['A','A+E','E','B'])}${fi('Size (e.g. 24x40)','size','text',f.size)}</div>`+
+    `<div class="row2">${fi('Facing','facing','text',f.facing)}${fi('Total Floors','floors','number',f.floors)}</div>`+
+    ft('Floor Config','config',f.config)+
+    `<div class="row2">${fi('Age','age','text',f.age)}${fi('Borewell','borewell','text',f.borewell)}</div>`+
+    fi('Water Supply','water','text',f.water)+
+    fi('Gas / Amenities','gas','text',f.gas)+
+    `<div class="row2">${fi('Price (Cr) *','price','number',f.price)}${fi('Rent/mo (₹)','rent','number',f.rent)}</div>`+
+    fc('negotiable',f.negotiable,'Negotiable')+
+    fs('Status','status',f.status,Object.keys(STATUS))+
+    fi('Highlights','highlights','text',f.highlights)+
+    ft('Private Notes','notes',f.notes);
+  }
+
+  const typeLabel=S.tab==='apartments'?'Flat':S.tab==='plots'?'Plot':'Building';
+  return `<div class="fwrap">
+    <div class="ftitle">${isEdit?'Edit':'New'} ${typeLabel}</div>
+    ${fields}
+    <button class="save-btn" onclick="doSave()">${isEdit?'Update':'Add'} ${typeLabel}</button>
+    <button class="cancel-btn" onclick="S.view=S.selected?'detail':'list';R()">Cancel</button>
+  </div>`;
+}
+function fi(l,k,t,v){return `<div class="fg"><label class="lbl">${l}</label><input class="inp" type="${t}" value="${v||''}" placeholder="${l.replace(' *','')}" oninput="F('${k}',this.value)"></div>`;}
+function fs(l,k,v,opts){return `<div class="fg"><label class="lbl">${l}</label><select class="inp" onchange="F('${k}',this.value)">${opts.map(o=>`<option${v===o?' selected':''}>${o}</option>`).join('')}</select></div>`;}
+function fc(k,v,l){return `<div class="fg"><label class="chkrow"><input type="checkbox"${v?' checked':''} onchange="F('${k}',this.checked)"> ${l}</label></div>`;}
+function ft(l,k,v){return `<div class="fg"><label class="lbl">${l}</label><textarea class="inp" oninput="F('${k}',this.value)">${v||''}</textarea></div>`;}
+function F(k,v){S.form[k]=v;}
+
+// ── CUSTOMERS ──
+function buildCList(){
+  const filtered=DB.customers.filter(c=>{
+    const q=S.search.toLowerCase();
+    return !q||JSON.stringify(c).toLowerCase().includes(q);
+  });
+  const toolbar=`<div class="toolbar"><input class="search" placeholder="Search leads…" value="${S.search}" oninput="S.search=this.value;R()"/></div><div class="count">${filtered.length} lead${filtered.length!==1?'s':''}</div>`;
+  if(!filtered.length) return toolbar+`<div class="empty"><div style="font-size:32px">👥</div><div style="margin-top:8px;font-size:14px">No leads yet</div></div>`;
+  const cards=filtered.map(c=>`<div class="cust-card" onclick="openCust('${c.id}')">
+    <div class="card-top">
+      <div><div class="cust-name">${c.name}</div><div style="font-size:11px;color:#64748b;margin-top:2px">📞 ${c.phone}</div></div>
+      ${sPill(c.leadStatus,LEAD_STATUS)}
+    </div>
+    <div class="pill-row">
+      ${(c.interest||[]).map(i=>`<span class="pill pill-grey">${i}</span>`).join('')}
+      ${c.budgetPlot?`<span class="pill" style="background:#fef3c7;color:#92400e">Plot ₹${c.budgetPlot}L</span>`:''}
+      ${c.budgetBuilding?`<span class="pill" style="background:#fef3c7;color:#92400e">Bldg ₹${c.budgetBuilding}L</span>`:''}
+    </div>
+  </div>`).join('');
+  return toolbar+cards;
+}
+function buildCDetail(){
+  const c=S.selected;if(!c)return'';
+  const stBtns=Object.entries(LEAD_STATUS).map(([st,col])=>{
+    const active=c.leadStatus===st;
+    return `<button class="st-btn${active?' active-st':''}" style="${active?`background:${col.bg};color:${col.tc};border-color:${col.dot}`:''}" onclick="changeLead('${c.id}','${st}')">${st}</button>`;
+  }).join('');
+  return `<button class="back-btn" onclick="S.view='list';R()">← Back</button>
+  <div class="dcard">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div class="dtitle">${c.name}</div><div class="dloc">📞 ${c.phone}${c.email?' · '+c.email:''}</div></div>
+      ${sPill(c.leadStatus,LEAD_STATUS)}
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      ${gr([['Profession',c.profession],['Interest',(c.interest||[]).join(', ')],['Plot Budget',c.budgetPlot?'₹'+c.budgetPlot+'L':'—'],['Bldg Budget',c.budgetBuilding?'₹'+c.budgetBuilding+'L':'—'],['Preferred Areas',c.preferredLocations],['Khata Pref.',c.khataPreference],['Follow Up',c.followUpDate]])}
+    </div>
+    ${c.notes?`<div class="nt-box" style="margin-top:10px"><strong style="font-size:10px;color:#94a3b8">NOTES</strong><br>${c.notes}</div>`:''}
+  </div>
+  <div class="dcard">
+    <div class="sec-title">LEAD STATUS</div>
+    <div class="st-row">${stBtns}</div>
+    <div class="act-row">
+      <button class="edit-btn" onclick="openCEdit('${c.id}')">✏️ Edit</button>
+      <button class="del-btn" onclick="deleteCust('${c.id}')">🗑</button>
+    </div>
+  </div>`;
+}
+function buildCForm(){
+  const f=S.form;
+  const interests=['Apartments','Plots','Buildings'];
+  const intChecks=interests.map(i=>`<label class="chkrow"><input type="checkbox"${(f.interest||[]).includes(i)?' checked':''} onchange="toggleInt('${i}',this.checked)"> ${i}</label>`).join('');
+  return `<div class="fwrap">
+    <div class="ftitle">${S.view==='cedit'?'Edit':'New'} Lead</div>
+    ${fi('Name *','name','text',f.name)}
+    ${fi('Phone *','phone','tel',f.phone)}
+    ${fi('Email','email','email',f.email)}
+    ${fi('Profession','profession','text',f.profession)}
+    <div class="fg"><label class="lbl">Interested In</label>${intChecks}</div>
+    <div class="row2">${fi('Plot Budget (L)','budgetPlot','number',f.budgetPlot)}${fi('Bldg Budget (L)','budgetBuilding','number',f.budgetBuilding)}</div>
+    ${fi('Preferred Locations','preferredLocations','text',f.preferredLocations)}
+    ${fi('Khata Preference','khataPreference','text',f.khataPreference)}
+    ${fs('Lead Status','leadStatus',f.leadStatus,Object.keys(LEAD_STATUS))}
+    ${fi('Follow-up Date','followUpDate','date',f.followUpDate)}
+    ${ft('Notes','notes',f.notes)}
+    <button class="save-btn" onclick="saveCust()">${S.view==='cedit'?'Update':'Add'} Lead</button>
+    <button class="cancel-btn" onclick="S.view=S.selected?'cdetail':'list';R()">Cancel</button>
+  </div>`;
+}
+
+// ── Actions ──
+function switchTab(t){S.tab=t;S.view='list';S.search='';S.fStatus='All';S.fKhata='All';R();}
+
+function openDetail(id){
+  S.selected=DB[S.tab].find(p=>p.id===id);S.view='detail';R();
+}
+function openCust(id){S.selected=DB.customers.find(c=>c.id===id);S.view='cdetail';R();}
+
+function doAdd(){
+  if(S.tab==='customers'){
+    S.form={name:'',phone:'',email:'',profession:'',interest:[],budgetPlot:'',budgetBuilding:'',preferredLocations:'',khataPreference:'A-Khata',leadStatus:'Exploring',followUpDate:'',notes:''};
+    S.view='cadd';
+  } else if(S.tab==='apartments'){
+    S.form={name:'',type:'2 BHK',location:'',area:'',floor:'',facing:'',parking:'',furnishing:'Semi-Furnished',khata:'A',price:'',negotiable:true,finalPrice:'',status:'Available',highlights:'',notes:''};
+    S.view='add';
+  } else if(S.tab==='plots'){
+    S.form={name:'',location:'',size:'',area:'',facing:'',road:'',khata:'E',pricePerSqft:'',totalPrice:'',negotiable:true,dcConversion:false,loanable:false,approvals:'',status:'Available',highlights:'',notes:''};
+    S.view='add';
+  } else {
+    S.form={name:'',location:'',size:'',floors:'',config:'',facing:'',age:'New',borewell:'',water:'',gas:'',khata:'A',price:'',rent:'',negotiable:true,status:'Available',highlights:'',notes:''};
+    S.view='add';
+  }
+  S.selected=null;R();
+}
+
+function openEdit(id){
+  S.form={...DB[S.tab].find(p=>p.id===id)};S.view='edit';R();
+}
+function openCEdit(id){
+  S.form={...DB.customers.find(c=>c.id===id)};S.view='cedit';R();
+}
+
+function doSave(){
+  const f=S.form;
+  if(!f.name||!f.location){alert('Name and Location are required');return;}
+  const isEdit=S.view==='edit';
+  const entry={...f,id:isEdit?f.id:uid(),
+    area:Number(f.area)||0,
+    ...(S.tab==='apartments'?{price:Number(f.price)||0,finalPrice:f.finalPrice?Number(f.finalPrice):null}:{}),
+    ...(S.tab==='plots'?{pricePerSqft:Number(f.pricePerSqft)||0,totalPrice:Number(f.totalPrice)||0}:{}),
+    ...(S.tab==='buildings'?{price:Number(f.price)||0,rent:Number(f.rent)||0,floors:Number(f.floors)||0}:{})
+  };
+  if(isEdit) DB[S.tab]=DB[S.tab].map(p=>p.id===f.id?entry:p);
+  else DB[S.tab].push(entry);
+  S.selected=entry;S.view='detail';
+  saveAll();R();
+}
+
+function saveCust(){
+  const f=S.form;
+  if(!f.name||!f.phone){alert('Name and Phone required');return;}
+  const isEdit=S.view==='cedit';
+  const entry={...f,id:isEdit?f.id:uid(),budgetPlot:Number(f.budgetPlot)||0,budgetBuilding:Number(f.budgetBuilding)||0};
+  if(isEdit) DB.customers=DB.customers.map(c=>c.id===f.id?entry:c);
+  else DB.customers.push(entry);
+  S.selected=entry;S.view='cdetail';S.tab='customers';
+  saveAll();R();
+}
+
+function changeStatus(id,st){
+  DB[S.tab]=DB[S.tab].map(p=>p.id===id?{...p,status:st}:p);
+  S.selected={...S.selected,status:st};
+  saveAll();R();
+}
+function changeLead(id,st){
+  DB.customers=DB.customers.map(c=>c.id===id?{...c,leadStatus:st}:c);
+  S.selected={...S.selected,leadStatus:st};
+  saveAll();R();
+}
+function doDelete(id){
+  if(!confirm('Remove this listing?'))return;
+  DB[S.tab]=DB[S.tab].filter(p=>p.id!==id);
+  S.view='list';saveAll();R();
+}
+function deleteCust(id){
+  if(!confirm('Remove this lead?'))return;
+  DB.customers=DB.customers.filter(c=>c.id!==id);
+  S.view='list';S.tab='customers';saveAll();R();
+}
+function toggleInt(item,checked){
+  const arr=[...(S.form.interest||[])];
+  if(checked&&!arr.includes(item))arr.push(item);
+  else if(!checked){const i=arr.indexOf(item);if(i>-1)arr.splice(i,1);}
+  S.form.interest=arr;
+}
+
+// Boot
+R();
+</script>
+</body>
+</html>
